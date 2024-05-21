@@ -75,7 +75,7 @@ public class Elephant extends Actor
         }
         
         eat();
-        
+        explode();
         //Animate the elephant
         animateElephant();
     }
@@ -90,6 +90,30 @@ public class Elephant extends Actor
             world.increaseScore();
             elephantSound.play();
         }
-       
+        
+        if(isTouching(Banana.class))
+        {
+            removeTouching(Banana.class); 
+            MyWorld world =(MyWorld) getWorld();
+            world.createBanana();
+            world.increaseScore2();
+            elephantSound.play();
+        }
+        
+        
+    }
+  
+    public void explode()
+    {
+        if(isTouching(Boom.class))
+        {
+            removeTouching(Boom.class); 
+            MyWorld world =(MyWorld) getWorld();
+            world.createBoom();
+            world.decreaseScore();
+            
+            
+        }
+        
     }
 }
